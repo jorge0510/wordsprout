@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WordSprout Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<header>
+  <img src="/img/logo.png" alt="WordSprout Logo">
+  <div>
+    <h1>Let's learn together!</h1>
+    <form action="/logout" method="GET">
+      <button type="submit">Logout</button>
+    </form>
+  </div>
+</header>
+
+<main class="container">
+  <div class="panel">
+    <h2>Today's Progress</h2>
+
+    <p><strong>English Vocabulary</strong></p>
+    <div class="progress-bar">
+      <div class="progress-bar-inner" style="width: <%= progress.english.learned ? (progress.english.said / progress.english.learned) * 100 : 0 %>%"></div>
+    </div>
+    <p><%= progress.english.learned %> words learned, <%= progress.english.recognized %> recognized, <%= progress.english.said %> spoken</p>
+
+    <p><strong>Spanish Vocabulary</strong></p>
+    <div class="progress-bar">
+      <div class="progress-bar-inner" style="width: <%= progress.spanish.learned ? (progress.spanish.said / progress.spanish.learned) * 100 : 0 %>%"></div>
+    </div>
+    <p><%= progress.spanish.learned %> words learned, <%= progress.spanish.recognized %> recognized, <%= progress.spanish.said %> spoken</p>
+
+    <p><strong>Portuguese Vocabulary</strong></p>
+    <div class="progress-bar">
+      <div class="progress-bar-inner" style="width: <%= progress.portuguese.learned ? (progress.portuguese.said / progress.portuguese.learned) * 100 : 0 %>%"></div>
+    </div>
+    <p><%= progress.portuguese.learned %> words learned, <%= progress.portuguese.recognized %> recognized, <%= progress.portuguese.said %> spoken</p>
+  </div>
+
+  <div class="panel">
+    <h2>Your Word Garden</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>English</th>
+          <th>Spanish</th>
+          <th>Portuguese</th>
+          <th>English Status</th>
+          <th>Spanish Status</th>
+          <th>Portuguese Status</th>
+          <th>Notes</th>
+          <th>Update</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% words.forEach(word => { %>
+          <tr>
+            <td><%= word.english || '-' %></td>
+            <td><%= word.spanish || '-' %></td>
+            <td><%= word.portuguese || '-' %></td>
+            <td><%= word.status?.english || 'Not started' %></td>
+            <td><%= word.status?.spanish || 'Not started' %></td>
+            <td><%= word.status?.portuguese || 'Not started' %></td>
+            <td><%= word.note || '-' %></td>
+            <td>
+              <form action="/words/<%= word._id %>" method="POST" style="display:flex; flex-direction:column; gap:5px;">
+                <select name="statusEnglish">
+                  <option value="">Not started</option>
+                  <option value="Learning" <%= word.status?.english === 'Learning' ? 'selected' : '' %>>Learning</option>
+                  <option value="Recognizes" <%= word.status?.english === 'Recognizes' ? 'selected' : '' %>>Recognizes</option>
+                  <option value="Says" <%= word.status?.english === 'Says' ? 'selected' : '' %>>Says</option>
+                </select>
+                <select name="statusSpanish">
+                  <option value="">Not started</option>
+                  <option value="Learning" <%= word.status?.spanish === 'Learning' ? 'selected' : '' %>>Learning</option>
+                  <option value="Recognizes" <%= word.status?.spanish === 'Recognizes' ? 'selected' : '' %>>Recognizes</option>
+                  <option value="Says" <%= word.status?.spanish === 'Says' ? 'selected' : '' %>>Says</option>
+                </select>
+                <select name="statusPortuguese">
+                  <option value="">Not started</option>
+                  <option value="Learning" <%= word.status?.portuguese === 'Learning' ? 'selected' : '' %>>Learning</option>
+                  <option value="Recognizes" <%= word.status?.portuguese === 'Recognizes' ? 'selected' : '' %>>Recognizes</option>
+                  <option value="Says" <%= word.status?.portuguese === 'Says' ? 'selected' : '' %>>Says</option>
+                </select>
+                <button type="submit">Update</button>
+              </form>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+</main>
+
+<div class="sticky-footer">
+  <form action="/words" method="POST" style="display: flex; gap: 1rem; flex-wrap: wrap;">
+    <input type="text" name="english" placeholder="English Word">
+    <input type="text" name="spanish" placeholder="Spanish Word">
+    <input type="text" name="portuguese" placeholder="Portuguese Word">
+    <select name="category">
+      <option value="">Category</option>
+      <option value="family">Family</option>
+      <option value="animal">Animal</option>
+      <option value="food">Food</option>
+      <option value="color">Color</option>
+      <option value="other">Other</option>
+    </select>
+    <input type="text" name="note" placeholder="Optional Note">
+    <button type="submit">Plant Word</button>
+  </form>
+</div>
+
+<footer>
+  WordSprout — Growing little voices, one word at a time. <br>
+  &copy; 2025 WordSprout. v0.1
+</footer>
+
+</body>
+</html>

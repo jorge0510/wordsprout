@@ -1,0 +1,100 @@
+
+img{
+  height: 200px;
+}
+body {
+  /* padding-top:80px; */
+  word-wrap:break-word;
+  margin: 0;
+  font-family: 'Nunito', sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #FEF9ED;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+header img {
+  height: 120px;
+}
+header button {
+  background-color: #6fcf97;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+.container {
+  display: flex;
+  padding: 2rem;
+  gap: 2rem;
+}
+.panel {
+  flex: 1;
+  background: #fff;
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+.progress-bar {
+  background: #e0e0e0;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+.progress-bar-inner {
+  height: 20px;
+  background-color: #6fcf97;
+  width: 60%;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+table th, table td {
+  text-align: left;
+  padding: 0.5rem;
+  border-bottom: 1px solid #e0e0e0;
+}
+table th {
+  background: #f1f1f1;
+}
+.sticky-footer {
+  position: sticky;
+  bottom: 0;
+  background: #fff;
+  padding: 1rem 2rem;
+  display: flex;
+  gap: 1rem;
+  box-shadow: 0 -2px 8px rgba(0,0,0,0.05);
+  flex-wrap: wrap;
+}
+.sticky-footer input, .sticky-footer select {
+  padding: 0.5rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  flex: 1;
+  min-width: 150px;
+}
+.sticky-footer button {
+  background: #6fcf97;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+footer {
+  text-align: center;
+  font-size: 0.8rem;
+  color: #aaa;
+  margin: 2rem 0 1rem;
+}
